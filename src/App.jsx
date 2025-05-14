@@ -12,10 +12,10 @@ function App() {
   })
 
   const handleChange = (e) => {
-    const {name, value, type, checked} = e.target;
+    const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [name]: type ==='checkbox'
+      [name]: type === 'checkbox' ? checked : value
     })
   }
 
@@ -35,7 +35,60 @@ function App() {
 
   return (
     <>
-
+      <header>
+        <h1>Crea un nuovo post</h1>
+      </header>
+      <main>
+        <div className='container'>
+          <div className="row">
+            <form onSubmit={handleSubmit}>
+              <div>
+                <input
+                  type='text'
+                  name='author'
+                  id='author'
+                  placeholder='Author'
+                  className='form-control'
+                  value={formData.author}
+                  onChange={handleChange} />
+              </div>
+              <div>
+                <input
+                  type='text'
+                  name='title'
+                  id='title'
+                  placeholder='title'
+                  className='form-control'
+                  value={formData.title}
+                  onChange={handleChange} />
+              </div>
+              <div>
+                <textarea
+                  name='body'
+                  id='body'
+                  placeholder='body'
+                  className='form-control'
+                  value={formData.body}
+                  onChange={handleChange} />
+              </div>
+              <div>
+                <input
+                  type='checkbox'
+                  name='public'
+                  id='public'
+                  placeholder='Public'
+                  className='form-check-input'
+                  checked={formData.public}
+                  onChange={handleChange} />
+                <label htmlFor="">Pubblica</label>
+              </div>
+              <div>
+                <button type='submit'>Invia</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
     </>
   )
 }
